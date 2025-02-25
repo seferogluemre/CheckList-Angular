@@ -12,10 +12,4 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'todoapp-angular';
 
-  items = [
-    { description: "Kahvaltı", action: "No" },
-    { description: "Spor", action: "Yes" },
-    { description: "Yazılım", action: "No" },
-    { description: "Ders", action: "Yes" },
-  ]
 }
