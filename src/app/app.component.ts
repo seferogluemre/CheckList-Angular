@@ -18,6 +18,7 @@ export class AppComponent {
   newTodoText: string = '';
   showToast: boolean = false;
   toastMessage: string = '';
+  toastType: 'success' | 'danger' = 'danger';
 
   getName(){  
     return this.model.user;
@@ -38,8 +39,9 @@ export class AppComponent {
     this.showCompleted = !this.showCompleted;
   }
 
-  showErrorToast(message: string) {
+  showToastMessage(message: string, type: 'success' | 'danger') {
     this.toastMessage = message;
+    this.toastType = type;
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;
@@ -49,9 +51,11 @@ export class AppComponent {
   addItem() {
     if (this.newTodoText.trim() !== '') {
       this.model.items.push(new TodoItem(this.newTodoText, false));
+      this.showToastMessage('Görev başarıyla eklendi!', 'success');
       this.newTodoText = '';
     } else {
-      this.showErrorToast('Lütfen bir görev giriniz!');
+      this.showToastMessage('Lütfen bir görev giriniz!', 'danger');
     }
   }
+
 }
