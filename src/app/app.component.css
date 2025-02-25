@@ -1,0 +1,16 @@
+.content {
+    background-color: red;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.content .form-control {
+    width: 100%;
+    border-radius: 9px !important;
+}
+
+.content .btn {
+    width: 160px;
+    border-radius: 10px !important;
+}
