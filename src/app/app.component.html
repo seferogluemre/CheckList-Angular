@@ -181,34 +181,22 @@
     <div class="input-group d-flex flex-column w-75">
       <input type="text" name="" id="input-group-append" class="form-control">
       <button type="button" class="btn btn-primary">Ekle</button>
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>{{item.description}}</td>
+            <td>{{item.action}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Desc</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <tr>
-          <td>Kahvaltı</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Spor</td>
-          <td>No</td>
-
-        </tr>
-        <tr>
-          <td>Yazılım</td>
-          <td>No</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </main>
-
-
 
 <router-outlet />
