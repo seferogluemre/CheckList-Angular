@@ -16,6 +16,8 @@ export class AppComponent {
   model = new Model();
   showCompleted: boolean = false;
   newTodoText: string = '';
+  showToast: boolean = false;
+  toastMessage: string = '';
 
   getName(){  
     return this.model.user;
@@ -36,10 +38,20 @@ export class AppComponent {
     this.showCompleted = !this.showCompleted;
   }
 
+  showErrorToast(message: string) {
+    this.toastMessage = message;
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000);
+  }
+
   addItem() {
     if (this.newTodoText.trim() !== '') {
       this.model.items.push(new TodoItem(this.newTodoText, false));
       this.newTodoText = '';
+    } else {
+      this.showErrorToast('Lütfen bir görev giriniz!');
     }
   }
 }
