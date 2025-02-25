@@ -20,12 +20,12 @@ export class AppComponent {
   toastMessage: string = '';
   toastType: 'success' | 'danger' = 'danger';
 
-  getName(){  
+  getName() {
     return this.model.user;
   }
 
-  getItems(){
-    if(this.showCompleted) {
+  getItems() {
+    if (this.showCompleted) {
       return this.model.items;
     }
     return this.model.items.filter(item => !item.action);
