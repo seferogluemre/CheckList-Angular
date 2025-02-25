@@ -176,44 +176,81 @@
 </style>
 
 <main>
-  <div class="w-100 d-flex justify-content-center flex-column content">
-    <h4>{{getName()}} todolist</h4>
-    <div class="input-group d-flex flex-column w-75">
-      <input type="text" name="" id="input-group-append" class="form-control">
-      
-      <div class="d-flex justify-content-end mb-3 mt-3">
-        <button class="btn" [class.btn-primary]="!showCompleted" [class.btn-success]="showCompleted" (click)="toggleCompleted()">
-          {{ showCompleted ? 'Tamamlananları Gizle' : 'Tamamlananları Göster' }}
-        </button>
-      </div>
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">{{getName()}} - Todo List</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-group mb-3">
+              <input type="text" 
+                     class="form-control" 
+                     placeholder="Yeni görev ekle..."
+                     [(ngModel)]="newTodoText"
+                     (keyup.enter)="addItem()">
+              <button class="btn btn-primary" 
+                      (click)="addItem()">
+                <i class="fas fa-plus"></i> Ekle
+              </button>
+            </div>
 
-      <button type="button" class="btn btn-primary">Ekle</button>
-      <table class="table mt-4">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of getItems(); let i = index">
-            <td>{{i + 1}}</td>
-            <td>{{item.description}}</td>
-            <td>
-              <input type="checkbox" 
-                     [checked]="item.action"
-                     (change)="onActionChange(item)"
-                     class="form-check">
-            </td>
-            <td [ngSwitch]="item.action">
-              <span *ngSwitchCase="true" class="m-0">Tamamlandı</span>
-              <span *ngSwitchCase="false" class="m-0">Tamamlanmadı</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-muted">
+                {{ getItems().length }} görev{{ getItems().length === 1 ? '' : 'ler' }}
+              </span>
+              <button class="btn" 
+                      [class.btn-outline-primary]="!showCompleted" 
+                      [class.btn-outline-success]="showCompleted" 
+                      (click)="toggleCompleted()">
+                <i [class]="showCompleted ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                {{ showCompleted ? 'Tamamlananları Gizle' : 'Tamamlananları Göster' }}
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>#</th>
+                    <th>Görev</th>
+                    <th class="text-center">Durum</th>
+                    <th class="text-center">İşlem</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of getItems(); let i = index" 
+                      [class.table-success]="item.action">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.description}}</td>
+                    <td class="text-center">
+                      <div class="form-check d-flex justify-content-center">
+                        <input type="checkbox" 
+                               class="form-check-input" 
+                               [checked]="item.action"
+                               (change)="onActionChange(item)">
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <span class="badge" 
+                            [class.bg-success]="item.action"
+                            [class.bg-warning]="!item.action">
+                        {{item.action ? 'Tamamlandı' : 'Devam Ediyor'}}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr *ngIf="getItems().length === 0">
+                    <td colspan="4" class="text-center text-muted">
+                      Henüz görev eklenmemiş
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </main>
