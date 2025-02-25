@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Model } from './model';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,17 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'todoapp-angular';
+
+  model = new Model();
+
+  getName(){  
+    return this.model.user;
+  }
+
+  getItems(){
+    return this.model.items;
+  }
 
 }
