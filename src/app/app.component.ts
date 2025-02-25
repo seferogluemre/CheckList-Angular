@@ -14,17 +14,25 @@ import { Model } from './model';
 export class AppComponent {
 
   model = new Model();
+  showCompleted: boolean = false;
 
   getName(){  
     return this.model.user;
   }
 
   getItems(){
-    return this.model.items;
+    if(this.showCompleted) {
+      return this.model.items;
+    }
+    return this.model.items.filter(item => !item.action);
   }
 
   onActionChange(item: any) {
     item.action = !item.action;
+  }
+
+  toggleCompleted() {
+    this.showCompleted = !this.showCompleted;
   }
 
 }

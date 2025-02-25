@@ -180,6 +180,13 @@
     <h4>{{getName()}} todolist</h4>
     <div class="input-group d-flex flex-column w-75">
       <input type="text" name="" id="input-group-append" class="form-control">
+      
+      <div class="d-flex justify-content-end mb-3 mt-3">
+        <button class="btn" [class.btn-primary]="!showCompleted" [class.btn-success]="showCompleted" (click)="toggleCompleted()">
+          {{ showCompleted ? 'Tamamlananları Gizle' : 'Tamamlananları Göster' }}
+        </button>
+      </div>
+
       <button type="button" class="btn btn-primary">Ekle</button>
       <table class="table mt-4">
         <thead>
