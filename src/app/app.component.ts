@@ -23,4 +23,8 @@ export class AppComponent {
     return this.model.items;
   }
 
+  onActionChange(item: any) {
+    item.action = !item.action;
+  }
+
 }

@@ -186,6 +186,7 @@
           <tr>
             <th>#</th>
             <th>Description</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -193,9 +194,15 @@
           <tr *ngFor="let item of getItems(); let i = index">
             <td>{{i + 1}}</td>
             <td>{{item.description}}</td>
+            <td>
+              <input type="checkbox" 
+                     [checked]="item.action"
+                     (change)="onActionChange(item)"
+                     class="form-check">
+            </td>
             <td [ngSwitch]="item.action">
-              <span *ngSwitchCase="true" class="m-0">Tamamlandı</p>
-              <span *ngSwitchCase="false" class="m-0">Tamamlanmadı</p>
+              <span *ngSwitchCase="true" class="m-0">Tamamlandı</span>
+              <span *ngSwitchCase="false" class="m-0">Tamamlanmadı</span>
             </td>
           </tr>
         </tbody>
